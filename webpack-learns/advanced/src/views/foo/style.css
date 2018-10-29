@@ -1,0 +1,7 @@
+.foo {
+  color: red;
+  display: flex;
+}
+.foo h1 {
+  transition: all 100ms linear;
+}

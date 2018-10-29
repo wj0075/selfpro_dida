@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket测试</title>
+</head>
+<body>
+<input type="text" class="inp">
+<button class="btn">发送</button>
+<script>
+    var inpEle = document.querySelector('.inp');
+    var btnEle = document.querySelector('.btn');
+var ws = new WebSocket('ws://127.0.0.1:8081');
+
+ws.onopen = function () {
+    console.log('open');
+    ws.send('websocket hello world~~')
+};
+
+ws.onmessage = function (ev) {
+    if(ev.data instanceof ArrayBuffer){
+        processArrayBuffer(ev.data);
+    }
+    console.log(ev);
+};
+
+ws.onerror = function (err) {
+    console.log('error', err)
+};
+
+btnEle.onclick = function () {
+  ws.send(inpEle.value);
+}
+</script>
+</body>
+</html>

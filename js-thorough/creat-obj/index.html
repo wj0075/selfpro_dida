@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的多种创建方式</title>
+</head>
+<body>
+<script>
+    // 工厂模式
+    function createPerson(name) {
+        var o = new Object();
+        o.name = name;
+        o.getName = function () {
+            console.log(this.name);
+        };
+        return o;
+    }
+    var person1 = createPerson('wj');
+    
+    // 构造函数模式
+    
+    function Person(name) {
+        this.name = name;
+        this.getName = function () {
+            console.log(this.name);
+        }
+    }
+
+    var person2 = new Person('wd');
+
+    // 构造函数模式优化
+
+    function Person1(name) {
+        this.name = name;
+        this.getName  = getName;
+    }
+    function getName() {
+        console.log(this.name);
+    }
+    var person3 = new Person1('wq');
+
+    // 原型模式
+
+    function Person2(name) {
+
+    }
+    Person2.prototype.name = 'kevin';
+    Person2.prototype.getName = function () {
+        console.log(this.name);
+    };
+    var person4 = new Person2('kevin');
+
+    // 原型模式优化
+
+    function Person3(name) {
+
+    }
+    Person3.prototype = {
+        name: 'kevin',
+        getName: function () {
+            console.log(this.name);
+        }
+    };
+    var person5 = new Person3();
+
+    // 组合模式
+
+    function Person4(name) {
+        this.name = name;
+    }
+    Person4.prototype = {
+        constructor: Person4,
+        getName: function () {
+            console.log(this.name)
+        }
+    };
+    var person6 = new Person4('wj');
+
+    // 动态原型模式
+    function Person5(name) {
+        this.name = name;
+        if(typeof this.getName != 'function') {
+            Person5.prototype.getName = function () {
+                console.log(this.name)
+            }
+        }
+    }
+    var person7 = new Person5('wf');
+
+    function Person6(name) {
+        this.name = name;
+        if(typeof this.getName != "function") {
+            Person6.prototype = {
+                constructor: Person6,
+                getName: function () {
+                    console.log(this.name)
+                }
+            };
+            return new Person6(name)
+        }
+    }
+    var person8 = new Person6('kevin');
+    var person9 = new Person6('dasiy');
+    person8.getName(); //Uncaught TypeError: person8.getName is not a function
+    person9.getName(); // 正确执行
+
+    // 寄生构造函数模式
+
+    function Person7(name) {
+        var o = new Object();
+        o.name = name;
+        o.getName = function () {
+            console.log(this.name)
+        };
+        return o;
+    }
+    var person10 = new Person7('sssss');
+    console.log(person10 instanceof Person7); // false
+    console.log(person10 instanceof Object); // true
+
+    // 稳妥构造函数
+
+    function Person8(name) {
+        var o = new Object();
+        o.sayName = function () {
+            console.log(name)
+        };
+        return o;
+    }
+    var person11 = new Person8('qqqqq');
+    person11.sayName(); // qqqqq
+    person11.name = 'rrrr';
+    person11.sayName(); // qqqqq
+    console.log(person11.name); // rrrr
+
+</script>
+</body>
+</html>

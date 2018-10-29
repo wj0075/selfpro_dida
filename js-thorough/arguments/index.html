@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>arguments</title>
+</head>
+<body>
+<script>
+    function foo(name,age,sex) {
+        console.log(arguments);
+    }
+    foo('wj', 24, 'man');
+    function bar(b,c,d) {
+        console.log('实参的长度', arguments.length)
+    }
+    console.log('形参的长度', bar.length);
+    bar(1);
+
+    var data = [];
+    for(var i = 0; i<3; i++){
+        (data[i] = function () {
+            console.log(arguments.callee.i)
+        }).i = i;
+    }
+    data[0]();
+    data[1]();
+    data[2]();
+
+    function foo1() {
+        bar1.apply(this, arguments)
+    }
+    function bar1() {
+        console.log(arguments)
+    }
+    foo1('1','2','3');
+
+    function fuc(...arguments) {
+        console.log(arguments)
+    }
+    fuc(1,2,3,4,5)
+</script>
+</body>
+</html>

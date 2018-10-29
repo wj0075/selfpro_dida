@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>attribute-and-property</title>
+</head>
+<body>
+<div id="box" class="box-class"  data-ip="1" test="hello"></div>
+<input id="inp" type="text" value="hello">
+<a href="index.html"></a>
+<script>
+    var boxEle = document.querySelector('#box');
+    var inpEle = document.querySelector('#inp');
+    var aEle = document.querySelector('a');
+    /*console.log(aEle.href);//http://localhost:63341/js-thorough/attribute-and-property/index.html
+    console.log(aEle.getAttribute('href')); // index.html*/
+    boxEle.setAttribute('aa', 'bb');
+    console.dir(boxEle)
+    /*console.dir(boxEle);
+    console.dir(inpEle);
+    inpEle.attributes.value.value = 'new value';
+    console.log(inpEle.value);
+    console.log(inpEle.attributes.value)*/
+</script>
+</body>
+</html>

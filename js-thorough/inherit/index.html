@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承的多种方式</title>
+</head>
+<body>
+<script>
+    // 原型链继承
+
+   /* function Parent() {
+        this.name = 'kevin';
+    }
+    Parent.prototype.getName = function () {
+        console.log(this.name);
+    };
+
+    function Child() {
+
+    }
+
+    Child.prototype = new Parent();
+
+    var child = new Child();
+    console.log(child.getName());*/
+
+    /*function Parent() {
+        this.name = ['kevin', 'daisy']
+    }
+    function Child() {
+
+    }
+
+    Child.prototype = new Parent();
+
+    var child = new Child();
+    child.name.push('yayu');
+
+    console.log(child.name); //  ["kevin", "daisy", "yayu"]
+    var child1 = new Child();
+    child1.name.push('wj');
+    console.log(child1.name); //  ["kevin", "daisy", "yayu", "wj"]*/
+
+
+    /*function Parent() {
+        this.names = ['kevin', 'diasy']
+    }
+
+    function Child() {
+        Parent.call(this)
+    }
+
+    var child = new Child();
+    child.names.push('yayu');
+    console.log(child.names); // ["kevin", "diasy", "yayu"]
+    var child1 = new Child();
+    child1.names.push('wj');
+    console.log(child1.names); // ["kevin", "diasy", "wj"]
+*/
+
+    /*function Parent(name) {
+        this.name = name;
+    }
+
+    function Child(name) {
+        Parent.call(this,name)
+    }
+    var child = new Child('kevin');
+    console.log(child.name); // kevin
+    var child1 = new Child('diasy'); //
+    console.log(child1.name); // diasy*/
+
+   /* function Parent(name) {
+        this.name = name;
+        this.colors = ['red', 'blue', 'yellow'];
+    }
+    Parent.prototype.getName = function () {
+        console.log(this.name);
+    };
+    function Child(name, age) {
+        Parent.call(this, name);
+        this.age = age;
+    }
+    Child.prototype = new Parent();
+    Child.prototype.constructor = Child;
+
+    var child = new Child('kevin', 18);
+    child.colors.push('green');
+
+    console.log(child.name); // kevin
+    console.log(child.age); // 18
+    console.log(child.colors); // ["red", "blue", "yellow", "green"]
+
+    var child1 = new Child('diasy', 20);
+    console.log(child1.name); // diasy
+    console.log(child1.age); // 20
+    console.log(child1.colors); // ["red", "blue", "yellow"]*/
+
+   /*function createObj(o) {
+       function F() {}
+       F.prototype = o;
+       return new F();
+   }
+
+   var person = {
+       name: 'kevin',
+       friends: ['daisy','kelly'],
+   };
+    var person1 = createObj(person);
+    var person2 = createObj(person);
+
+    person1.name = 'person1';
+    console.log(person2.name); // kevin
+    person1.friends.push('taylor');
+    console.log(person2.friends); // ["daisy", "kelly", "taylor"]*/
+
+   /*function createObj(o) {
+       var clone = Object.create(o);
+       clone.sayName = function () {
+           console.log('hi');
+       };
+       return clone
+   }*/
+
+
+   function Parent(name) {
+       this.name = name;
+       this.colors = ['red', 'blue', 'yellow']
+   }
+   Parent.prototype.getName = function () {
+       console.log(this.name);
+   };
+   
+   function Child(name, age) {
+        Parent.call(this, name);
+        this.age = age;
+   }
+   // 关键第三步
+
+    var F = function () {};
+   F.prototype = Parent.prototype;
+   Child.prototype = new F();
+
+   var child = new Child('kevin', 18);
+   console.log(child);
+
+   // 我们封装一下这个继承方法
+    
+    function object(o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    }
+
+    function prototype(child, parent) {
+        var prototype = object(parent.prototype);
+        prototype.constructor = child;
+        child.prototype = prototype;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>WebUra</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+   /* .box{
+      width: 70%;
+      height: 200px;
+      line-height: 200px;
+      padding: 10px;
+      margin: 10px auto;
+      background-color: blueviolet;
+      resize: horizontal;
+      overflow: hidden;
+    }
+
+    .fill-available{
+      display: inline-block;
+      line-height: 20px;
+      padding: 20px;
+      background-color: fuchsia;
+      color: #000;
+      vertical-align: middle;
+      width: -webkit-fill-available;
+      width: -moz-fill-available;
+      width: -moz-available;    !* FireFox目前这个生效 *!
+      width: fill-available;
+    }*/
+   .box {
+     background-color: #f0f3f9;
+     padding: 10px;
+     margin: 10px 0 20px;
+     overflow: hidden;
+   }
+
+   .inline-block {
+     display: inline-block;
+   }
+   .min-content {
+     width: -webkit-min-content;
+     width: -moz-min-content;
+     width: min-content;
+   }
+  </style>
+</head>
+<body>
+<strong>display:inline-block;</strong>
+<div class="box inline-block">
+  <img src="//image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+  <p>display:inline-block具有收缩特性，但这里宽度随文字。而width:min-content随图片。</p>
+</div>
+
+<strong>width: min-content;</strong>
+<div class="box min-content">
+  <img src="//image.zhangxinxu.com/image/study/s/s256/mm1.jpg">
+  <p>display:inline-block具有收缩特性，但这里宽度随文字。而width:min-content随图片。</p>
+</div>
+<!--<div class="box">
+  <p class="fill-available">
+    width:fill-available可以让元素的宽度表现为默认的block水平元素的尺寸表现。<br>
+    但这里实际上是display:inline-block水平的，<br>
+    于是，我们可以保证宽度满尺寸自适应的同时使用line-height实现近似的垂直居中效果。
+  </p>
+</div>-->
+<!--<script src="./index.js"></script>-->
+<script src="./index1.js"></script>
+</body>
+</html>

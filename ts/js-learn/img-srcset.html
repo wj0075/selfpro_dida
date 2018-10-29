@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>图片自适应</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+</head>
+<body>
+<!--<img src="../img/mm-width-128px.jpg" srcset="../img/mm-width-256px.jpg 2x" alt="">-->
+
+<img src="../img/mm-width-128px.jpg"
+    srcset="../img/mm-width-128px.jpg 128w,../img/mm-width-256px.jpg 256w, ../img/mm-width-512px.jpg 512w"
+    sizes="(max-width: 360px) 340px, 128px">
+<img src="../img/mm-width-128px.jpg"
+     srcset="../img/mm-width-128px.jpg 128w,../img/mm-width-256px.jpg 256w, ../img/mm-width-512px.jpg 512w"
+     sizes="(max-width: 360px) calc(100vw-20px), 128px">
+
+<pictur>
+    <source media="(max-width: 800px)"
+        srcset="../img/mm-width-128px.jpg 128w,../img/mm-width-256px.jpg 256w"
+            sizes="(min-width: 530px) calc(100vw-96px), 100vw"
+    >
+    <img src="../img/mm-width-128px.jpg"
+         srcset="../img/mm-width-128px.jpg 128w,../img/mm-width-256px.jpg 256w"
+         sizes="(min-width:1066px) 689px,calc(75vw-137px)"
+    >
+</pictur>
+</body>
+</html>
